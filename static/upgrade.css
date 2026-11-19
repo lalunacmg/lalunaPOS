@@ -1,0 +1,120 @@
+/* La Luna Operations — extensions; original storefront and official logo preserved */
+.ll-card{background:#211f1c;border:1px solid rgba(245,158,11,.23);border-radius:18px;padding:17px;margin:13px 0;color:#faf7f2}
+.ll-card h3{font-size:1rem;font-weight:800;margin:0 0 8px;color:#f9da99}.ll-card p,.ll-card small{color:#bdb3a6;font-size:.78rem;line-height:1.6}
+.ll-action{width:100%;padding:13px 16px;border-radius:11px;background:#f59e0b;color:#19130c!important;font-size:.9rem;font-weight:800;margin:6px 0 0;cursor:pointer}
+.ll-action:disabled{opacity:.45;cursor:not-allowed}.ll-ghost{background:#2c2924;border:1px solid #77582e;color:#ffdf9a!important}
+.ll-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:8px}
+.ll-flex{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.ll-field{width:100%;min-height:44px;padding:10px 12px;border:1px solid #685138;border-radius:10px;background:#2a2621;color:#faf7f2;outline:none;font:inherit}
+.ll-field:focus{border-color:#fbbf24}.ll-muted{font-size:.72rem;color:#b9ada0!important}.ll-error{color:#ff9a91!important}.ll-ok{color:#87d5a6!important}
+.ll-reco{display:flex;gap:9px;align-items:center;border:1px solid #4d4030;padding:9px;border-radius:10px;background:#29241e;margin:7px 0}
+.ll-reco strong{font-size:.8rem;color:#faf7f2}.ll-reco small{display:block;font-size:.7rem;color:#bea98b}.ll-reco button{padding:9px 13px;background:#f59e0b;color:#17130e;border-radius:8px;font-weight:800;margin-left:auto}
+.ll-stamps{display:flex;flex-wrap:wrap;gap:8px;font-size:1.3rem;padding:10px 0}.ll-stamps span{padding:5px;border:1px solid #765c36;border-radius:9px}
+.ll-order-number{font-size:1.3rem;font-weight:900;color:#fbbf24;overflow-wrap:anywhere}
+#llUpsells[hidden],#llLoyaltyCard[hidden],#llLoyaltyJoin[hidden]{display:none!important}
+
+/* Live API status: visible instead of silent 'Failed to load' errors */
+.ll-connection-banner{margin:12px 16px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#352c20;border:1px solid #8b652e;border-radius:12px;color:#fff0d2;font:600 .78rem/1.5 system-ui,sans-serif}
+.ll-connection-banner[hidden]{display:none!important}
+.ll-connection-banner[data-state=connecting]{background:#252522;border-color:#585144}
+.ll-connection-banner button{border-radius:9px;background:#f6c570;color:#1f170b;padding:8px 11px;font-weight:800;cursor:pointer;white-space:nowrap}
+.ll-connection-banner button:disabled{opacity:.55;cursor:progress}
+
+/* Context for a table QR: both order types remain available. */
+.ll-table-qr-banner{margin:12px 0;padding:12px 15px;border:1px solid #ac8747;border-radius:12px;background:#2e291f;color:#f9deb0;font-weight:800;font-size:.91rem;letter-spacing:.01em;text-align:center;line-height:1.45}
+#llTableNum[readonly]{background:#2c302c;border-color:#9f804d;cursor:default}
+
+/* v6: distinct customer bottom navigation buttons — green Menu, orange Order. */
+:root{--tab-h:76px}
+.tabbar{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  align-items:center;
+  gap:12px;
+  height:calc(var(--tab-h) + env(safe-area-inset-bottom));
+  padding:8px max(12px,env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-right));
+  background:rgba(17,19,16,.98)!important;
+  border-top:1px solid rgba(236,199,143,.28)!important;
+}
+.tabbar .tab-btn{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  min-width:0;
+  min-height:58px;
+  height:100%;
+  padding:11px 13px;
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,.23);
+  color:#fff!important;
+  font-size:.84rem;
+  font-weight:900;
+  line-height:1.2;
+  letter-spacing:.045em;
+  text-shadow:0 1px 1px rgba(0,0,0,.20);
+  box-shadow:0 4px 11px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.15);
+  transition:transform .2s ease,filter .2s ease,box-shadow .2s ease;
+}
+.tabbar #tab-menu{background:linear-gradient(125deg,#16603f,#228452)!important}
+.tabbar #tab-order{background:linear-gradient(125deg,#cb5612,#ed861c)!important}
+.tabbar .tab-btn.active{
+  color:#fff!important;
+  box-shadow:0 0 0 2px rgba(255,243,216,.72),0 5px 17px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.2);
+}
+.tabbar .tab-btn:not(.active){filter:saturate(.93)}
+.tabbar .tab-btn:active{transform:scale(.96)}
+.tabbar .tab-btn:focus-visible{outline:3px solid #fce6ad;outline-offset:2px}
+.tabbar .tab-btn .tab-icon{display:inline-flex;flex:none;align-items:center;justify-content:center}
+.tabbar .tab-btn .tab-icon svg{width:21px;height:21px}
+.tabbar .tab-btn .tab-bar{display:none!important}
+.tabbar #tab-order .tab-dot{top:3px;right:5px;width:17px;height:17px;font-size:.59rem;border:1px solid #fff;background:#632a0f!important;color:#fff!important}
+@media(max-width:355px){.tabbar{gap:8px;padding-left:9px;padding-right:9px}.tabbar .tab-btn{gap:6px;font-size:.78rem;padding-left:8px;padding-right:8px}}
+@media(prefers-reduced-motion:reduce){.tabbar .tab-btn{transition:none!important}.tabbar .tab-btn.active .tab-icon{animation:none!important}}
+
+/* v7: embedded HTML rules mirrored here for external stylesheets. */
+/* La Luna customer bottom navigation v7: full green Menu and orange Order buttons.
+   Embedded as a safeguard when an old external CSS asset is cached or fails to load. */
+:root{--tab-h:86px!important}
+nav.tabbar{
+  display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;
+  column-gap:12px!important;row-gap:0!important;
+  position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;
+  width:100%!important;height:calc(var(--tab-h) + env(safe-area-inset-bottom))!important;
+  padding:10px max(14px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))!important;
+  background:rgba(18,17,16,.985)!important;border-top:1px solid rgba(222,178,100,.35)!important;
+  box-shadow:0 -7px 24px rgba(0,0,0,.23)!important;
+  z-index:900!important;box-sizing:border-box!important;
+}
+nav.tabbar>button.tab-btn{
+  display:flex!important;flex:1 1 0!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;
+  gap:10px!important;max-width:420px!important;min-width:0!important;min-height:62px!important;height:64px!important;
+  margin:0!important;padding:11px 16px!important;
+  border:1px solid rgba(255,255,255,.25)!important;border-radius:16px!important;
+  color:#fff!important;font:800 16px/1.1 system-ui,'Segoe UI',sans-serif!important;
+  letter-spacing:.02em!important;text-transform:none!important;
+  text-shadow:0 1px 2px rgba(0,0,0,.16)!important;
+  box-shadow:0 3px 12px rgba(0,0,0,.22),inset 0 1px rgba(255,255,255,.20)!important;
+  transition:transform .16s ease,filter .16s ease,box-shadow .16s ease!important;
+}
+nav.tabbar>button#tab-menu{background:linear-gradient(125deg,#16603f,#228452)!important}
+nav.tabbar>button#tab-order{background:linear-gradient(125deg,#cb5612,#ed861c)!important}
+nav.tabbar>button.tab-btn.active{
+  color:#fff!important;filter:brightness(1.07)!important;
+  box-shadow:0 0 0 2px rgba(255,242,215,.86),0 6px 18px rgba(0,0,0,.30),inset 0 1px rgba(255,255,255,.2)!important;
+}
+nav.tabbar>button.tab-btn:not(.active){color:#fff!important;filter:saturate(.98)}
+nav.tabbar>button.tab-btn:active{transform:scale(.97)!important}
+nav.tabbar>button.tab-btn:focus-visible{outline:3px solid #ffedb7!important;outline-offset:3px!important}
+nav.tabbar>button.tab-btn>.tab-icon{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;color:#fff!important}
+nav.tabbar>button.tab-btn>.tab-icon svg{width:23px!important;height:23px!important;display:block!important}
+nav.tabbar>button.tab-btn>.tab-label{display:inline!important;color:#fff!important;font-size:16px!important;font-weight:800!important;line-height:1.1!important}
+nav.tabbar>button.tab-btn>.tab-bar{display:none!important}
+nav.tabbar #tab-order .tab-dot{top:5px!important;right:7px!important;left:auto!important;width:17px!important;height:17px!important;line-height:16px!important;background:#7c300b!important;color:#fff!important;border:1px solid #fff!important;font-size:10px!important}
+@media(max-width:360px){nav.tabbar{gap:8px!important;padding-left:9px!important;padding-right:9px!important}nav.tabbar>button.tab-btn{gap:7px!important;padding:10px 8px!important;font-size:14px!important}nav.tabbar>button.tab-btn>.tab-label{font-size:14px!important}}
+@media(prefers-reduced-motion:reduce){nav.tabbar>button.tab-btn{transition:none!important}nav.tabbar>button.tab-btn.active .tab-icon{animation:none!important}}
+
+/* 2026-11-18 responsive finishing touches: keep forms and live alerts readable. */
+.ll-connection-banner{max-width:calc(100% - 20px);margin:10px auto;box-sizing:border-box;overflow-wrap:anywhere}
+.ll-table-qr-banner{max-width:100%;overflow-wrap:anywhere}
+@media(max-width:480px){.ll-connection-banner{flex-wrap:wrap}.ll-connection-banner button{min-height:44px;flex:1 1 125px}}
+@media(prefers-reduced-motion:reduce){nav.tabbar>button.tab-btn{transition:none!important}}

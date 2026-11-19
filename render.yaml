@@ -1,0 +1,33 @@
+# La Luna: ONE HTTPS origin for customer QR ordering and the remote back office.
+# Persistent SQLite requires a paid Render web service with a persistent disk.
+# Do NOT commit laluna.db, backups, admin passwords, or local .env files.
+services:
+  - type: web
+    name: laluna-grill-cafe
+    runtime: python
+    region: singapore
+    plan: starter
+    buildCommand: pip install -r requirements.txt && test -f static/index.html && test -f static/backoffice.html && test -f receipt_printer.py
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT --workers 1
+    healthCheckPath: /api/health
+    disk:
+      name: laluna-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: LALUNA_PUBLIC_MODE
+        value: "1"
+      - key: LALUNA_DB_PATH
+        value: /var/data/laluna.db
+      - key: LALUNA_FORCE_SECURE_COOKIE
+        value: "1"
+      - key: LALUNA_ADMIN_EMAIL
+        sync: false
+      - key: LALUNA_ADMIN_PASSWORD
+        sync: false
+      - key: LALUNA_ADMIN_TAB_PIN
+        sync: false
+      - key: LALUNA_SESSION_SECRET
+        generateValue: true
+# RENDER_EXTERNAL_URL is assigned automatically; optional custom domain:
+# set LALUNA_PUBLIC_URL=https://your-cafe-domain.example in the Render dashboard.
